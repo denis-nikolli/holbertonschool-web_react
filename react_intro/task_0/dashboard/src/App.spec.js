@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import App from './App';
+import App from './App'
 import '@testing-library/jest-dom';
 
 describe('App Component Robust Tests', () => {
@@ -7,7 +7,7 @@ describe('App Component Robust Tests', () => {
     // Test 1: Single query for <h1> and its text content
     test('renders the correct h1 heading', () => {
         render(<App />);
-        // Checks both the tag (heading level 1) and the text content
+        // This checks both the tag (heading level 1) and the text content in one go
         const h1Element = screen.getByRole('heading', { level: 1, name: /school dashboard/i });
         expect(h1Element).toBeInTheDocument();
     });
@@ -15,7 +15,7 @@ describe('App Component Robust Tests', () => {
     // Test 2: Match <img> using alt attribute and ignore case
     test('renders the Holberton logo image via alt text', () => {
         render(<App />);
-        // Ensure this regex matches the alt text exactly as it appears in App.js
+        // Using alt text is the most accessible and robust way to find an image
         const logo = screen.getByAltText(/holberton logo/i);
         expect(logo).toBeInTheDocument();
     });
