@@ -1,14 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import App from './App'
 
-import { render, screen } from '@testing-library/react';
-import App from './App';
-import '@testing-library/jest-dom';
-
-import { render, screen } from '@testing-library/react';
-import App from './App';
-import '@testing-library/jest-dom';
-
 describe('App Component Robust Tests', () => {
 
     // Test 1: Single query for <h1> and its text content
