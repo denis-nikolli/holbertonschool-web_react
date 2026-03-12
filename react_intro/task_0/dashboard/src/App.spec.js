@@ -1,14 +1,35 @@
 import { render, screen } from '@testing-library/react';
-import App from "./App";
+import App from './App';
 
-test("renders 'School Dashboard' h1 element", () => {
-    render(<App />);
-    const titleElement = screen.getByRole("heading", { level: 1, name: /school dashboard/i });
-    expect(titleElement).toBeInTheDocument();
-    const bodyText = screen.getByText(/login to access the full dashboard/i);
-    expect(bodyText).toBeInTheDocument();
-    const footerText = screen.getByText(/copyright/i);
-    expect(footerText).toBeInTheDocument();
-    const imgElement = screen.getByRole("img");
-    expect(imgElement).toBeInTheDocument();
+// Mock the image and CSS imports to prevent Jest from crashing
+jest.mock('./assets/holberton-logo.jpg', () => 'test-file-stub');
+jest.mock('./App.css', () => ({}));
+
+describe('App Component Robust Tests', () => {
+
+    // Test 1: Single query for <h1> and its text content
+    test('renders the correct h1 heading', () => {
+        render(<App />);
+        // Checks both the tag (heading level 1) and the text content
+        const h1Element = screen.getByRole('heading', { level: 1, name: /school dashboard/i });
+        expect(h1Element).toBeInTheDocument();
+    });
+
+    // Test 2: Match <img> using alt attribute and ignore case
+    test('renders the Holberton logo image via alt text', () => {
+        render(<App />);
+        // Ensure this regex matches the alt text exactly as it appears in App.js
+        const logo = screen.getByAltText(/holberton logo/i);
+        expect(logo).toBeInTheDocument();
+    });
+
+    // Test 3: Check for specific text content in body/footer ignoring case
+    test('renders body and footer text content regardless of case', () => {
+        render(<App />);
+
+        // Checks for text content anywhere in the document ignoring case
+        expect(screen.getByText(/login to access the full dashboard/i)).toBeInTheDocument();
+        expect(screen.getByText(/copyright/i)).toBeInTheDocument();
+    });
+
 });
