@@ -1,14 +1,22 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen } from "@testing-library/react";
 import App from "./App";
 
-test("renders 'School Dashboard' h1 element", () => {
+test("renders App form correctly", () => {
     render(<App />);
-    const titleElement = screen.getByRole("heading", { level: 1, name: /school dashboard/i });
-    expect(titleElement).toBeInTheDocument();
-    const bodyText = screen.getByText(/login to access the full dashboard/i);
-    expect(bodyText).toBeInTheDocument();
-    const footerText = screen.getByText(/copyright/i);
-    expect(footerText).toBeInTheDocument();
-    const imgElement = screen.getByRole("img");
-    expect(imgElement).toBeInTheDocument();
+
+
+    const emailInput = screen.getByLabelText(/email/i);
+    const passwordInput = screen.getByLabelText(/password/i);
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+
+ 
+    const emailLabel = screen.getByText(/email/i);
+    const passwordLabel = screen.getByText(/password/i);
+    expect(emailLabel).toBeInTheDocument();
+    expect(passwordLabel).toBeInTheDocument();
+
+
+    const button = screen.getByRole("button", { name: /ok/i });
+    expect(button).toBeInTheDocument();
 });
