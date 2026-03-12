@@ -1,5 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import App from './App';
+import '@testing-library/jest-dom';
+
 
 // Mock the image and CSS imports to prevent Jest from crashing
 jest.mock('./assets/holberton-logo.jpg', () => 'test-file-stub');
