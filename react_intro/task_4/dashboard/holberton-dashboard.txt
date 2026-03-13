@@ -1,2 +1,2 @@
-https://github.com/denis-nikolli/holbertonschool-web_react.git
+https://denis-nikolli.github.io/holbertonschool-web_react/
 
