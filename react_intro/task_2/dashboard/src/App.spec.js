@@ -1,22 +1,25 @@
-import { render, screen } from "@testing-library/react";
-import App from "./App";
+import { render, screen } from '@testing-library/react';
+import App from './App';
 
-test("renders App form correctly", () => {
+describe('App', () => {
+  test('renders the dashboard layout', () => {
     render(<App />);
 
+    expect(
+      screen.getByRole('heading', { level: 1, name: /school dashboard/i })
+    ).toBeInTheDocument();
+    expect(
+      screen.getByText(/login to access the full dashboard/i)
+    ).toBeInTheDocument();
+    expect(screen.getByText(/copyright/i)).toBeInTheDocument();
+    expect(screen.getByRole('img', { name: /holberton logo/i })).toBeInTheDocument();
+  });
 
-    const emailInput = screen.getByLabelText(/email/i);
-    const passwordInput = screen.getByLabelText(/password/i);
-    expect(emailInput).toBeInTheDocument();
-    expect(passwordInput).toBeInTheDocument();
+  test('renders the sign in form', () => {
+    render(<App />);
 
- 
-    const emailLabel = screen.getByText(/email/i);
-    const passwordLabel = screen.getByText(/password/i);
-    expect(emailLabel).toBeInTheDocument();
-    expect(passwordLabel).toBeInTheDocument();
-
-
-    const button = screen.getByRole("button", { name: /ok/i });
-    expect(button).toBeInTheDocument();
+    expect(screen.getByLabelText(/email/i)).toBeInTheDocument();
+    expect(screen.getByLabelText(/password/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /ok/i })).toBeInTheDocument();
+  });
 });
